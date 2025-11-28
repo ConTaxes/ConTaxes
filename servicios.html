@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConTaxes | Servicios Estratégicos</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-blue: #0066cc;
+        --dark-navy: #1a2332;
+        --light-gray: #f5f7fa;
+        --text-dark: #2c3e50;
+        --text-light: #5a6c7d;
+        --accent-green: #00c853;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(26, 35, 50, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+        cursor: pointer;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        stroke: white;
+        stroke-width: 1.5;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        transition: color 0.3s;
+        letter-spacing: 0.3px;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-blue);
+      }
+
+      .nav-links a.active {
+        color: var(--accent-green);
+      }
+
+      .btn-cta {
+        background: transparent;
+        color: white;
+        border: 1.5px solid white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-cta:hover {
+        background: white;
+        color: var(--dark-navy);
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 70px;
+        height: 60vh;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 102, 204, 0.9),
+            rgba(26, 35, 50, 0.85)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%230066CC" width="1200" height="600"/><g opacity="0.1"><path d="M200,300 L400,200 L600,350 L800,250 L1000,300" stroke="%23ffffff" stroke-width="3" fill="none"/><circle cx="200" cy="300" r="8" fill="%23ffffff"/><circle cx="400" cy="200" r="8" fill="%23ffffff"/><circle cx="600" cy="350" r="8" fill="%23ffffff"/><circle cx="800" cy="250" r="8" fill="%23ffffff"/><circle cx="1000" cy="300" r="8" fill="%23ffffff"/></g></svg>');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+
+      .hero-content {
+        max-width: 950px;
+        padding: 0 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -1px;
+      }
+
+      .hero h2 {
+        font-size: 1.25rem;
+        font-weight: 400;
+        opacity: 0.95;
+        line-height: 1.7;
+      }
+
+      /* Enfoque Integral Section */
+      .enfoque-section {
+        padding: 7rem 5%;
+        background: white;
+      }
+
+      .enfoque-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      .enfoque-content h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+        letter-spacing: -0.5px;
+      }
+
+      .enfoque-content h2 strong {
+        font-weight: 600;
+      }
+
+      .enfoque-content p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        line-height: 1.9;
+      }
+
+      .enfoque-visual {
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .services-diagram {
+        position: relative;
+        width: 400px;
+        height: 400px;
+      }
+
+      .center-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--primary-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 102, 204, 0.3);
+        z-index: 2;
+      }
+
+      .service-node {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid var(--primary-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+        padding: 0.5rem;
+        color: var(--text-dark);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+
+      .service-node:hover {
+        transform: scale(1.1);
+        background: var(--light-gray);
+      }
+
+      .node-1 {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .node-2 {
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+      .node-3 {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .node-4 {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      .connection-line {
+        position: absolute;
+        background: var(--primary-blue);
+        opacity: 0.2;
+        z-index: 1;
+      }
+
+      .line-1 {
+        width: 3px;
+        height: 90px;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .line-2 {
+        width: 90px;
+        height: 3px;
+        top: 50%;
+        right: 90px;
+        transform: translateY(-50%);
+      }
+      .line-3 {
+        width: 3px;
+        height: 90px;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .line-4 {
+        width: 90px;
+        height: 3px;
+        top: 50%;
+        left: 90px;
+        transform: translateY(-50%);
+      }
+
+      /* Servicios Cards Section */
+      .servicios-section {
+        padding: 7rem 5%;
+        background: var(--light-gray);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+
+      .section-header h2 strong {
+        font-weight: 600;
+      }
+
+      .servicios-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+      }
+
+      .servicio-card {
+        background: white;
+        padding: 3rem;
+        border-top: 4px solid var(--primary-blue);
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .servicio-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 102, 204, 0.05),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .servicio-card:hover::before {
+        left: 100%;
+      }
+
+      .servicio-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-number {
+        font-size: 3rem;
+        font-weight: 200;
+        color: rgba(0, 102, 204, 0.15);
+        margin-bottom: 1rem;
+        line-height: 1;
+      }
+
+      .servicio-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      .servicio-card p {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .card-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-blue);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: gap 0.3s;
+      }
+
+      .card-button:hover {
+        gap: 1rem;
+      }
+
+      .card-button svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--primary-blue);
+        stroke-width: 2;
+      }
+
+      /* Final CTA Section */
+      .final-cta {
+        padding: 7rem 5%;
+        background: var(--dark-navy);
+        text-align: center;
+        color: white;
+      }
+
+      .final-cta h2 {
+        font-size: 2.8rem;
+        font-weight: 300;
+        margin-bottom: 2.5rem;
+        line-height: 1.3;
+      }
+
+      .final-cta h2 strong {
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: var(--accent-green);
+        color: white;
+        padding: 1.2rem 3rem;
+        border: none;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-primary:hover {
+        background: white;
+        color: var(--dark-navy);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      footer {
+        background: #0f1419;
+        color: white;
+        padding: 3rem 5% 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .footer-content a {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+      }
+
+      .footer-content a:hover {
+        color: var(--primary-blue);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .enfoque-container,
+        .servicios-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .services-diagram {
+          transform: scale(0.8);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <img
+          src="assets/logo.png"
+          width="160px"
+          alt="Contaxes - Servicios Contables, Tributarios y Financieros"
+        />
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html" class="active">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a
+          href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+          ><button class="btn-cta">Agendar Consulta</button>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="servicios">
+      <div class="hero-content">
+        <h1>Soluciones Estratégicas para el Ciclo de Negocio.</h1>
+        <h2>
+          Transformamos desafíos en oportunidades mediante un portafolio de
+          servicios contables, tributarios y de advisory de vanguardia.
+        </h2>
+      </div>
+    </section>
+
+    <!-- Enfoque Integral -->
+    <section class="enfoque-section">
+      <div class="enfoque-container">
+        <div class="enfoque-content">
+          <h2>Cobertura <strong>360° para su empresa.</strong></h2>
+          <p>
+            Nuestras líneas de servicio están diseñadas para interactuar de
+            forma sinérgica, ofreciendo un soporte completo que va desde la
+            optimización operativa diaria hasta la planeación estratégica de
+            largo plazo. En ConTaxes, su tranquilidad es nuestra prioridad.
+          </p>
+        </div>
+        <div class="enfoque-visual">
+          <div class="services-diagram">
+            <!-- Connection Lines -->
+            <div class="connection-line line-1"></div>
+            <div class="connection-line line-2"></div>
+            <div class="connection-line line-3"></div>
+            <div class="connection-line line-4"></div>
+
+            <!-- Center Circle -->
+            <div class="center-circle">ConTaxes<br />360°</div>
+
+            <!-- Service Nodes -->
+            <div class="service-node node-1">BPS</div>
+            <div class="service-node node-2">Tax & Legal</div>
+            <div class="service-node node-3">Financial Advisory</div>
+            <div class="service-node node-4">Assurance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios Cards -->
+    <section class="servicios-section">
+      <div class="section-header">
+        <h2>Explore nuestras <strong>soluciones especializadas.</strong></h2>
+      </div>
+      <div class="servicios-grid">
+        <!-- Card 1: BPS -->
+        <div class="servicio-card">
+          <div class="card-number">01</div>
+          <h3>Business Process Solutions (BPS)</h3>
+          <p>
+            Optimización y gestión integral de sus procesos contables y de
+            nómina. Liberamos su equipo interno para que se enfoque en el core
+            del negocio.
+          </p>
+          <a href="#" class="card-button">
+            Conocer más
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 2: Tax & Legal -->
+        <div class="servicio-card">
+          <div class="card-number">02</div>
+          <h3>Tax & Legal Advisory</h3>
+          <p>
+            Estrategias y cumplimiento tributario que minimizan riesgos y
+            maximizan la eficiencia fiscal. Navegamos la complejidad normativa
+            por usted.
+          </p>
+          <a href="#" class="card-button">
+            Conocer más
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 3: Financial Advisory -->
+        <div class="servicio-card">
+          <div class="card-number">03</div>
+          <h3>Financial Advisory & Planning</h3>
+          <p>
+            Inteligencia financiera para la toma de decisiones estratégicas y la
+            proyección de crecimiento. Convertimos datos en insights
+            accionables.
+          </p>
+          <a href="#" class="card-button">
+            Conocer más
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 4: Assurance -->
+        <div class="servicio-card">
+          <div class="card-number">04</div>
+          <h3>Assurance & Risk Diagnostic</h3>
+          <p>
+            Auditoría de cumplimiento, identificación de riesgos y aseguramiento
+            de la integridad de su información. Protegemos su reputación
+            corporativa.
+          </p>
+          <a href="#" class="card-button">
+            Conocer más
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 5: Informes y Análisis -->
+        <div class="servicio-card">
+          <div class="card-number">05</div>
+          <h3>Informes y Análisis Financiero</h3>
+          <p>
+            Reportería ejecutiva personalizada y análisis profundo de
+            indicadores clave. Visibilidad total para decisiones informadas.
+          </p>
+          <a href="#" class="card-button">
+            Conocer más
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Card 6: Auditoría de Procesos -->
+        <div class="servicio-card">
+          <div class="card-number">06</div>
+          <h3>Auditoría de Procesos</h3>
+          <p>
+            Evaluación exhaustiva de controles internos y eficiencia
+            operacional. Identificamos oportunidades de mejora continua.
+          </p>
+          <a href="#" class="card-button">
+            Conocer más
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <h2>
+        ¿Listo para optimizar su operación?<br /><strong
+          >Eleve el estándar de su gestión.</strong
+        >
+      </h2>
+      <a href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+        ><button class="btn-primary">Hable con un experto</button></a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">
+            <img
+              src="assets/logo.png"
+              width="200px"
+              alt="Contaxes - Servicios Contables, Tributarios y Financieros"
+            />
+          </div>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 0.9rem;
+              line-height: 1.7;
+            "
+          >
+            Firma de servicios profesionales especializada en Assurance,
+            Impuestos y Consultoría Financiera para empresas en crecimiento.
+          </p>
+        </div>
+        <div>
+          <h4>Servicios</h4>
+          <a href="#">Outsourcing Contable</a>
+          <a href="#">Consultoría Tributaria</a>
+          <a href="#">Advisory Financiero</a>
+          <a href="#">Auditoría</a>
+        </div>
+        <div>
+          <h4>Políticas</h4>
+          <a href="#">Política de Datos</a>
+          <a href="#">Derechos Contable</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="#">📱 Hable con un Socio</a>
+          <a href="#">✉️ contaxesinfo@gmail.com</a>
+          <a href="#">📍 Cajicá, Colombia</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 ConTaxes. Todos los derechos reservados.
+      </div>
+    </footer>
+  </body>
+</html>

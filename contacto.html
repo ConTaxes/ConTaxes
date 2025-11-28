@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConTaxes | Contacto</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-blue: #0066cc;
+        --dark-navy: #1a2332;
+        --light-gray: #f5f7fa;
+        --text-dark: #2c3e50;
+        --text-light: #5a6c7d;
+        --accent-green: #00c853;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(26, 35, 50, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        stroke: white;
+        stroke-width: 1.5;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        transition: color 0.3s;
+        letter-spacing: 0.3px;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-blue);
+      }
+
+      .nav-links a.active {
+        color: var(--accent-green);
+      }
+
+      .btn-cta {
+        background: transparent;
+        color: white;
+        border: 1.5px solid white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-cta:hover {
+        background: white;
+        color: var(--dark-navy);
+      }
+
+      /* Hero Section for Contact */
+      .hero {
+        margin-top: 70px;
+        height: 60vh; /* Reduced height for contact page */
+        background: linear-gradient(
+            135deg,
+            rgba(26, 35, 50, 0.92),
+            rgba(0, 102, 204, 0.85)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a2332" width="1200" height="800"/><g opacity="0.1"><rect fill="%23ffffff" x="100" y="100" width="200" height="400"/><rect fill="%23ffffff" x="350" y="150" width="180" height="450"/><rect fill="%23ffffff" x="580" y="80" width="220" height="500"/><rect fill="%23ffffff" x="850" y="120" width="190" height="480"/></g></svg>');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        padding: 0 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.2rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+      }
+
+      .hero h2 {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 0;
+        opacity: 0.9;
+        line-height: 1.5;
+      }
+
+      .hero h1 strong {
+        font-weight: 600;
+      }
+
+      /* Main Contact Layout */
+      .contact-layout {
+        padding: 6rem 5%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+
+      .contact-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--dark-navy);
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--primary-blue);
+        padding-left: 1rem;
+      }
+
+      /* Form Styling */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+        outline: none;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .checkbox-group,
+      .radio-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .checkbox-group label,
+      .radio-group label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 400;
+      }
+
+      .checkbox-group input[type="checkbox"],
+      .radio-group input[type="radio"] {
+        margin-right: 0.5rem;
+      }
+
+      .btn-submit {
+        background: var(--accent-green);
+        color: white;
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .btn-submit:hover {
+        background: #008a38;
+        transform: translateY(-1px);
+      }
+
+      .privacy-link {
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: var(--text-light);
+        text-decoration: none;
+      }
+
+      .privacy-link:hover {
+        color: var(--primary-blue);
+      }
+
+      #form-message {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: 4px;
+        background-color: #e6ffe6;
+        color: var(--accent-green);
+        font-weight: 600;
+        text-align: center;
+        display: none;
+        border: 1px solid var(--accent-green);
+      }
+
+      /* Direct Contact Info */
+      .direct-info {
+        background: var(--light-gray);
+        padding: 2.5rem;
+        border-radius: 4px;
+        height: fit-content;
+      }
+
+      .direct-info h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--primary-blue);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-item svg {
+        min-width: 24px;
+        height: 24px;
+        stroke: var(--dark-navy);
+        stroke-width: 1.5;
+        margin-right: 1rem;
+        margin-top: 0.15rem;
+      }
+
+      .contact-item span {
+        font-size: 1rem;
+        color: var(--text-dark);
+      }
+
+      .contact-item .label {
+        font-weight: 600;
+        display: block;
+        font-size: 0.9rem;
+        color: var(--text-light);
+      }
+
+      .map-container {
+        width: 100%;
+        height: 300px;
+        margin-top: 2rem;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /* Social Media */
+      .social-media {
+        padding: 3rem 5%;
+        text-align: center;
+      }
+
+      .social-media h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--dark-navy);
+        margin-bottom: 1.5rem;
+      }
+
+      .social-icons a {
+        margin: 0 1rem;
+        display: inline-block;
+        transition: transform 0.3s;
+      }
+
+      .social-icons a:hover {
+        transform: translateY(-3px);
+      }
+
+      .social-icons svg {
+        width: 36px;
+        height: 36px;
+        fill: var(--text-light);
+        transition: fill 0.3s;
+      }
+
+      .social-icons a:hover svg {
+        fill: var(--primary-blue);
+      }
+
+      /* Footer (Reused) */
+      footer {
+        background: #0f1419;
+        color: white;
+        padding: 3rem 5% 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .footer-content a {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+      }
+
+      .footer-content a:hover {
+        color: var(--primary-blue);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 900px) {
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+        .direct-info {
+          order: -1; /* Place info above map on mobile */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          height: 40vh;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero h2 {
+          font-size: 1.2rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+        /* Estilos básicos para el mensaje de notificación */
+        #form-message.success {
+          padding: 15px;
+          margin-bottom: 20px;
+          border: 1px solid #4caf50;
+          background-color: #e8f5e9;
+          color: #2e7d32;
+          border-radius: 5px;
+          text-align: center;
+          font-weight: bold;
+          display: block !important; /* Asegura que se muestre */
+        }
+        #form-message {
+          display: none; /* Oculto por defecto */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img
+          src="assets/logo.png"
+          width="160px"
+          alt="Contaxes - Servicios Contables, Tributarios y Financieros"
+        />
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html" class="active">Contacto</a>
+        <a
+          href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+          ><button class="btn-cta">Agendar Consulta</button>
+        </a>
+      </div>
+    </nav>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Hablemos de su <strong>Operación Contable y Financiera</strong></h1>
+        <h2>
+          ConTaxes: Su próximo socio estratégico. Estamos listos para escuchar
+          sus necesidades.
+        </h2>
+      </div>
+    </section>
+
+    <main class="contact-layout">
+      <section class="contact-card">
+        <h3>Envíenos un mensaje.</h3>
+
+        <form
+          id="contactForm"
+          action="https://formspree.io/f/xangavqy"
+          method="POST"
+        >
+          <input type="hidden" name="_to" value="contaxesinfo@gmail.com" />
+
+          <div id="form-message" style="display: none"></div>
+
+          <div class="form-group">
+            <label for="fullName">Nombre Completo (*)</label>
+            <input type="text" id="fullName" name="Nombre Completo" required />
+          </div>
+
+          <div class="form-group">
+            <label for="position">Cargo (Opcional)</label>
+            <input type="text" id="position" name="Cargo" />
+          </div>
+
+          <div class="form-group">
+            <label for="companyName">Nombre de la Empresa (*)</label>
+            <input
+              type="text"
+              id="companyName"
+              name="Nombre de la Empresa"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nit">NIT de la Empresa (Opcional)</label>
+            <input type="text" id="nit" name="NIT de la Empresa" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo Electrónico Corporativo (*)</label>
+            <input type="email" id="email" name="_replyto" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Número de Teléfono (*)</label>
+            <input type="tel" id="phone" name="Telefono" required />
+          </div>
+
+          <div class="form-group">
+            <label for="serviceInterest"
+              >Interés en el Servicio (Seleccione uno o más)</label
+            >
+            <div class="checkbox-group">
+              <label
+                ><input
+                  type="checkbox"
+                  name="Interes en Servicio[]"
+                  value="Business Process Solutions"
+                />
+                Business Process Solutions</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="Interes en Servicio[]"
+                  value="Tax & Legal Advisory"
+                />
+                Tax & Legal Advisory</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="Interes en Servicio[]"
+                  value="Financial Advisory & Planning"
+                />
+                Financial Advisory & Planning</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="Interes en Servicio[]"
+                  value="Assurance & Risk Diagnostic"
+                />
+                Assurance & Risk Diagnostic</label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="Interes en Servicio[]"
+                  value="Consulta General"
+                />
+                Consulta General</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensaje (*)</label>
+            <textarea id="message" name="Mensaje" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Preferencia de Contacto (*)</label>
+            <div class="radio-group">
+              <label
+                ><input
+                  type="radio"
+                  name="Preferencia de Contacto"
+                  value="Email"
+                  required
+                />
+                Email</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="Preferencia de Contacto"
+                  value="Telefono"
+                />
+                Teléfono</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="Preferencia de Contacto"
+                  value="WhatsApp"
+                />
+                WhatsApp</label
+              >
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Enviar Mensaje</button>
+
+          <a href="#" class="privacy-link"
+            >Ver Política de Tratamiento de Datos Personales</a
+          >
+        </form>
+      </section>
+
+      <section class="direct-contact">
+        <div class="direct-info">
+          <h3>O contáctenos directamente.</h3>
+
+          <div class="contact-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+              />
+            </svg>
+            <div>
+              <span class="label">Dirección</span>
+              <span>Cajicá, Colombia</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="contacto">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">ConTaxes</div>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 0.9rem;
+              line-height: 1.7;
+            "
+          >
+            Firma de servicios profesionales especializada en Assurance,
+            Impuestos y Consultoría Financiera para empresas en crecimiento.
+          </p>
+        </div>
+        <div>
+          <h4>Servicios</h4>
+          <a href="#">Outsourcing Contable</a>
+          <a href="#">Consultoría Tributaria</a>
+          <a href="#">Advisory Financiero</a>
+          <a href="#">Auditoría</a>
+        </div>
+        <div>
+          <h4>Políticas</h4>
+          <a href="#">Política de Datos</a>
+          <a href="#">NIT: Descripción iniciada 2025</a>
+          <a href="#">Derechos Contable</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="#">📱 Hable con un Socio</a>
+          <a href="#">✉️ info@contaxes.co</a>
+          <a href="#">📍 Bogotá, Colombia</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 ConTaxes. Todos los derechos reservados.
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById("contactForm");
+      const formMessage = document.getElementById("form-message");
+      const formButton = form.querySelector('button[type="submit"]');
+
+      form.addEventListener("submit", async function (event) {
+        // Previene el comportamiento por defecto de recarga de la página
+        event.preventDefault();
+
+        // Oculta cualquier mensaje anterior
+        formMessage.style.display = "none";
+        formMessage.classList.remove("success", "error");
+        formMessage.textContent = "";
+
+        // Deshabilita el botón y muestra un mensaje de carga
+        formButton.disabled = true;
+        formButton.textContent = "Enviando...";
+
+        const data = new FormData(form);
+
+        try {
+          // Envía los datos usando la API fetch (petición AJAX)
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: {
+              Accept: "application/json",
+            },
+          });
+
+          if (response.ok) {
+            // Muestra el mensaje de éxito
+            formMessage.textContent =
+              "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.";
+            formMessage.classList.add("success");
+            form.reset(); // Limpia los campos del formulario
+          } else {
+            // Muestra el mensaje de error
+            const responseData = await response.json();
+            formMessage.textContent =
+              responseData.error ||
+              "¡Ups! Hubo un problema al enviar el mensaje.";
+            formMessage.classList.add("error");
+          }
+        } catch (error) {
+          // Maneja errores de conexión o red
+          formMessage.textContent =
+            "¡Error de conexión! Por favor, inténtalo de nuevo.";
+          formMessage.classList.add("error");
+        } finally {
+          // Vuelve a habilitar el botón y muestra el mensaje
+          formButton.disabled = false;
+          formButton.textContent = "Enviar Mensaje";
+          formMessage.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConTaxes | La Firma - Nosotros</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-blue: #0066cc;
+        --dark-navy: #1a2332;
+        --light-gray: #f5f7fa;
+        --text-dark: #2c3e50;
+        --text-light: #5a6c7d;
+        --accent-green: #00c853;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(26, 35, 50, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        stroke: white;
+        stroke-width: 1.5;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        transition: color 0.3s;
+        letter-spacing: 0.3px;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-blue);
+      }
+
+      .nav-links a.active {
+        color: var(--accent-green);
+      }
+
+      .btn-cta {
+        background: transparent;
+        color: white;
+        border: 1.5px solid white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-cta:hover {
+        background: white;
+        color: var(--dark-navy);
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 70px;
+        height: 60vh;
+        background: linear-gradient(
+            135deg,
+            rgba(26, 35, 50, 0.9),
+            rgba(0, 102, 204, 0.8)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231a2332" width="1200" height="600"/><g opacity="0.08"><circle fill="%23ffffff" cx="200" cy="300" r="150"/><circle fill="%23ffffff" cx="600" cy="250" r="180"/><circle fill="%23ffffff" cx="1000" cy="320" r="160"/></g></svg>');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        padding: 0 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -1px;
+      }
+
+      .hero h2 {
+        font-size: 1.3rem;
+        font-weight: 400;
+        opacity: 0.95;
+        line-height: 1.6;
+      }
+
+      /* Propuesta de Valor Section */
+      .propuesta-section {
+        padding: 7rem 5%;
+        background: white;
+      }
+
+      .propuesta-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      .propuesta-content h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+        letter-spacing: -0.5px;
+      }
+
+      .propuesta-content h2 strong {
+        font-weight: 600;
+      }
+
+      .propuesta-content p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        line-height: 1.9;
+        text-align: justify;
+      }
+
+      .propuesta-visual {
+        height: 450px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 102, 204, 0.1),
+          rgba(26, 35, 50, 0.05)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .propuesta-visual::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 102, 204, 0.2),
+          transparent
+        );
+        border-radius: 50%;
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.3;
+        }
+      }
+
+      .propuesta-icon {
+        width: 200px;
+        height: 200px;
+        stroke: var(--primary-blue);
+        stroke-width: 0.5;
+        opacity: 0.3;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Pilares Section */
+      .pilares-section {
+        padding: 7rem 5%;
+        background: var(--light-gray);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+
+      .section-header h2 strong {
+        font-weight: 600;
+      }
+
+      .pilares-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+
+      .pilar-card {
+        background: white;
+        padding: 3rem;
+        border-left: 4px solid var(--primary-blue);
+        transition: all 0.3s;
+      }
+
+      .pilar-card:hover {
+        transform: translateX(10px);
+        box-shadow: -5px 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .pilar-icon {
+        width: 50px;
+        height: 50px;
+        stroke: var(--primary-blue);
+        stroke-width: 1.5;
+        margin-bottom: 1.5rem;
+      }
+
+      .pilar-card h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      .pilar-card p {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      /* Liderazgo Section */
+      .liderazgo-section {
+        padding: 7rem 5%;
+        background: white;
+      }
+
+      .team-grid {
+        max-width: 1200px;
+        margin: 4rem auto 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+      }
+
+      .team-member {
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px);
+      }
+
+      .team-photo {
+        width: 100%;
+        aspect-ratio: 1;
+        background: linear-gradient(
+          135deg,
+          var(--primary-blue),
+          var(--dark-navy)
+        );
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 4rem;
+        font-weight: 300;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .team-photo::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+      }
+
+      .team-member h4 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        color: var(--text-dark);
+      }
+
+      .team-member .role {
+        color: var(--primary-blue);
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        letter-spacing: 0.5px;
+      }
+
+      .team-member .bio {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        text-align: left;
+      }
+
+      /* Alcance Section */
+      .alcance-section {
+        padding: 7rem 5%;
+        background: var(--dark-navy);
+        color: white;
+      }
+
+      .alcance-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .alcance-container h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        letter-spacing: -0.5px;
+      }
+
+      .alcance-container h2 strong {
+        font-weight: 600;
+      }
+
+      .alcance-container p {
+        font-size: 1.15rem;
+        line-height: 1.9;
+        opacity: 0.9;
+        margin-bottom: 3rem;
+      }
+
+      .impact-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        margin-top: 4rem;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 3.5rem;
+        font-weight: 300;
+        color: var(--accent-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        opacity: 0.8;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      /* Final CTA Section */
+      .final-cta {
+        padding: 7rem 5%;
+        background: var(--light-gray);
+        text-align: center;
+      }
+
+      .final-cta h2 {
+        font-size: 2.8rem;
+        font-weight: 300;
+        margin-bottom: 2.5rem;
+        line-height: 1.3;
+        color: var(--text-dark);
+      }
+
+      .final-cta h2 strong {
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: var(--accent-green);
+        color: white;
+        padding: 1.2rem 3rem;
+        border: none;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-primary:hover {
+        background: var(--dark-navy);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      footer {
+        background: #0f1419;
+        color: white;
+        padding: 3rem 5% 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .footer-content a {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+      }
+
+      .footer-content a:hover {
+        color: var(--primary-blue);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .propuesta-container,
+        .pilares-grid,
+        .team-grid,
+        .impact-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <img
+          src="assets/logo.png"
+          width="160px"
+          alt="Contaxes - Servicios Contables, Tributarios y Financieros"
+        />
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html" class="active">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a
+          href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+          ><button class="btn-cta">Agendar Consulta</button>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="lafirma">
+      <div class="hero-content">
+        <h1>Visión Global, Ejecución Local.</h1>
+        <h2>
+          Liderando la optimización financiera y tributaria para empresas de
+          alto desempeño en Colombia.
+        </h2>
+      </div>
+    </section>
+
+    <!-- Propuesta de Valor -->
+    <section class="propuesta-section">
+      <div class="propuesta-container">
+        <div class="propuesta-content">
+          <h2>
+            Más allá de las cifras, <strong>construyendo confianza.</strong>
+          </h2>
+          <p>
+            ConTaxes emerge como un referente en consultoría financiera y
+            tributaria, comprometida con la excelencia y la integridad. Nuestra
+            firma se distingue por transformar la complejidad normativa en una
+            ventaja competitiva para nuestros clientes, asegurando un
+            cumplimiento impecable y una estrategia financiera sólida. Nos
+            consideramos una extensión estratégica de su equipo, brindando
+            soluciones ágiles y precisas.
+          </p>
+        </div>
+        <div class="propuesta-visual">
+          <svg class="propuesta-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle
+              cx="9"
+              cy="7"
+              r="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pilares -->
+    <section class="pilares-section">
+      <div class="section-header">
+        <h2>Fundamentos que guían <strong>nuestra operación.</strong></h2>
+      </div>
+      <div class="pilares-grid">
+        <div class="pilar-card">
+          <svg class="pilar-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 16V12M12 8H12.01"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Integridad Inquebrantable</h3>
+          <p>
+            Operamos con la máxima ética y transparencia en cada interacción y
+            proceso. La confianza de nuestros clientes se construye sobre la
+            base de nuestra honestidad y compromiso con los más altos estándares
+            profesionales.
+          </p>
+        </div>
+
+        <div class="pilar-card">
+          <svg class="pilar-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M22 12H18L15 21L9 3L6 12H2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Excelencia Técnica</h3>
+          <p>
+            Nos mantenemos a la vanguardia de las regulaciones contables y
+            tributarias para ofrecer soluciones innovadoras y precisas. Nuestro
+            equipo se capacita constantemente para anticipar cambios y ofrecer
+            el mejor asesoramiento.
+          </p>
+        </div>
+
+        <div class="pilar-card">
+          <svg class="pilar-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M21 16V8C20.9996 7.64927 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64927 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3.27 6.96L12 12.01L20.73 6.96M12 22.08V12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Visión de Socio Estratégico</h3>
+          <p>
+            Nos integramos con los objetivos de nuestros clientes, ofreciendo
+            acompañamiento personalizado y proactivo. Vamos más allá del
+            cumplimiento para convertirnos en aliados estratégicos en la toma de
+            decisiones.
+          </p>
+        </div>
+
+        <div class="pilar-card">
+          <svg class="pilar-icon" viewBox="0 0 24 24" fill="none">
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 6V12L16 14"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Innovación Continua</h3>
+          <p>
+            Adoptamos tecnologías de vanguardia para optimizar procesos y
+            ofrecer un servicio más eficiente y adaptado a la era digital. La
+            transformación digital es parte integral de nuestra propuesta de
+            valor.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Liderazgo -->
+    <!-- <section class="liderazgo-section">
+      <div class="section-header">
+        <h2>Expertise que impulsa <strong>su crecimiento.</strong></h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-photo">AZ</div>
+          <h4>Ana Zambrano</h4>
+          <p class="role">Socia Directora - Tax & Legal</p>
+          <p class="bio">
+            15 años de experiencia en consultoría tributaria estratégica.
+            Especialista en precios de transferencia y procesos de fiscalización
+            ante la DIAN. Anteriormente lideró equipos en firmas Big4.
+          </p>
+        </div>
+
+        <div class="team-member">
+          <div class="team-photo">CM</div>
+          <h4>Carlos Martínez</h4>
+          <p class="role">Socio Director - Assurance & Advisory</p>
+          <p class="bio">
+            Experto en auditoría financiera y NIIF con 12 años de trayectoria.
+            Especializado en procesos de due diligence y valoración de empresas
+            para transacciones estratégicas.
+          </p>
+        </div>
+
+        <div class="team-member">
+          <div class="team-photo">LP</div>
+          <h4>Laura Pérez</h4>
+          <p class="role">Directora - Outsourcing & BPS</p>
+          <p class="bio">
+            Líder en procesos de transformación digital contable. 10 años
+            optimizando operaciones administrativas y de nómina para empresas en
+            crecimiento con enfoque en eficiencia.
+          </p>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Alcance y Compromiso -->
+    <section class="alcance-section">
+      <div class="alcance-container">
+        <h2>Más allá <strong>del negocio.</strong></h2>
+        <p>
+          En ConTaxes, creemos en el impacto positivo. Nos comprometemos con el
+          desarrollo de prácticas sostenibles y apoyamos iniciativas que
+          contribuyen al fortalecimiento del ecosistema empresarial colombiano.
+          Nuestra responsabilidad va más allá de los números.
+        </p>
+
+        <div class="impact-stats">
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Empresas Asesoradas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Satisfacción Cliente</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Soporte Estratégico</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <h2><strong>Fortalezca</strong> su gestión financiera y tributaria.</h2>
+      <a href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+        ><button class="btn-primary">Hable con un experto</button></a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">ConTaxes</div>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 0.9rem;
+              line-height: 1.7;
+            "
+          >
+            Firma de servicios profesionales especializada en Assurance,
+            Impuestos y Consultoría Financiera para empresas en crecimiento.
+          </p>
+        </div>
+        <div>
+          <h4>Servicios</h4>
+          <a href="#">Outsourcing Contable</a>
+          <a href="#">Consultoría Tributaria</a>
+          <a href="#">Advisory Financiero</a>
+          <a href="#">Auditoría</a>
+        </div>
+        <div>
+          <h4>Políticas</h4>
+          <a href="#">Política de Datos</a>
+          <a href="#">NIT: Descripción iniciada 2025</a>
+          <a href="#">Derechos Contable</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="#">📱 Hable con un Socio</a>
+          <a href="#">✉️ info@contaxes.co</a>
+          <a href="#">📍 Bogotá, Colombia</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 ConTaxes. Todos los derechos reservados.
+      </div>
+    </footer>
+  </body>
+</html>

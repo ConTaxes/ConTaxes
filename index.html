@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConTaxes | Claridad Financiera y Rigor Tributario</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-blue: #0066cc;
+        --dark-navy: #1a2332;
+        --light-gray: #f5f7fa;
+        --text-dark: #2c3e50;
+        --text-light: #5a6c7d;
+        --accent-green: #00c853;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Helvetica Neue", Arial, sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(26, 35, 50, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 5%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+        stroke: white;
+        stroke-width: 1.5;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 400;
+        transition: color 0.3s;
+        letter-spacing: 0.3px;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-blue);
+      }
+
+      .nav-links a.active {
+        color: var(--accent-green);
+      }
+
+      .btn-cta {
+        background: transparent;
+        color: white;
+        border: 1.5px solid white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-cta:hover {
+        background: white;
+        color: var(--dark-navy);
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 70px;
+        height: 85vh;
+        background: linear-gradient(
+            135deg,
+            rgba(26, 35, 50, 0.92),
+            rgba(0, 102, 204, 0.85)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a2332" width="1200" height="800"/><g opacity="0.1"><rect fill="%23ffffff" x="100" y="100" width="200" height="400"/><rect fill="%23ffffff" x="350" y="150" width="180" height="450"/><rect fill="%23ffffff" x="580" y="80" width="220" height="500"/><rect fill="%23ffffff" x="850" y="120" width="190" height="480"/></g></svg>');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        padding: 0 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.2rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        letter-spacing: -1px;
+      }
+
+      .hero h1 strong {
+        font-weight: 600;
+      }
+
+      .hero p {
+        font-size: 1.15rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        font-weight: 300;
+        line-height: 1.7;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: white;
+        color: var(--dark-navy);
+        padding: 1rem 2.5rem;
+        border: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        padding: 1rem 2.5rem;
+        border: 2px solid white;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-blue);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-secondary:hover {
+        background: white;
+        color: var(--dark-navy);
+      }
+
+      /* La Firma Section */
+      .firma-section {
+        padding: 6rem 5%;
+        background: white;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
+      }
+
+      .section-title strong {
+        font-weight: 600;
+      }
+
+      .firma-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .firma-content p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        line-height: 1.9;
+        margin-top: 1.5rem;
+      }
+
+      /* Services Section */
+      .services-section {
+        padding: 6rem 5%;
+        background: var(--light-gray);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 3rem auto 0;
+      }
+
+      .service-card {
+        background: white;
+        padding: 2.5rem;
+        border-top: 3px solid var(--primary-blue);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-icon {
+        width: 50px;
+        height: 50px;
+        stroke: var(--primary-blue);
+        stroke-width: 1.5;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      .service-card p {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      /* Why Us Section */
+      .why-us-section {
+        padding: 6rem 5%;
+        background: white;
+      }
+
+      .why-us-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        max-width: 1000px;
+        margin: 3rem auto 0;
+      }
+
+      .why-us-item {
+        text-align: center;
+      }
+
+      .why-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1.5rem;
+        stroke: var(--primary-blue);
+        stroke-width: 1.5;
+      }
+
+      .why-us-item h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .why-us-item p {
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      /* Blog Section */
+      .blog-section {
+        padding: 6rem 5%;
+        background: var(--light-gray);
+      }
+
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 3rem auto 0;
+      }
+
+      .blog-card {
+        background: white;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .blog-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(
+          135deg,
+          var(--dark-navy),
+          var(--primary-blue)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        opacity: 0.8;
+      }
+
+      .blog-content {
+        padding: 2rem;
+      }
+
+      .blog-content h4 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+
+      .blog-meta {
+        color: var(--text-light);
+        font-size: 0.85rem;
+        margin-top: 1rem;
+      }
+
+      /* Final CTA Section */
+      .final-cta {
+        padding: 6rem 5%;
+        background: var(--dark-navy);
+        color: white;
+        text-align: center;
+      }
+
+      .final-cta h2 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+      }
+
+      .final-cta .btn-primary {
+        background: var(--accent-green);
+        color: white;
+        font-size: 1.05rem;
+        padding: 1.2rem 3rem;
+      }
+
+      .final-cta .btn-primary:hover {
+        background: white;
+        color: var(--dark-navy);
+      }
+
+      /* Footer */
+      footer {
+        background: #0f1419;
+        color: white;
+        padding: 3rem 5% 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 2rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .footer-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .footer-content a {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+      }
+
+      .footer-content a:hover {
+        color: var(--primary-blue);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .why-us-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <img
+          src="assets/logo.png"
+          width="160px"
+          alt="Contaxes - Servicios Contables, Tributarios y Financieros"
+        />
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a
+          href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+          ><button class="btn-cta">Agendar Consulta</button>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>
+          <strong>Claridad Financiera y Rigor Tributario</strong><br />para
+          Empresas en Crecimiento
+        </h1>
+        <p>
+          Transformamos la complejidad normativa de Colombia en una ventaja
+          competitiva. Servicios de Assurance, Impuestos y Consultoría
+          Financiera con estándares globales.
+        </p>
+        <div class="hero-buttons">
+          <a
+            href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+            ><button class="btn-primary">Agendar Consulta Ejecutiva</button>
+          </a>
+          <a href="servicios.html"
+            ><button class="btn-secondary">Conozca nuestros servicios</button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- La Firma -->
+    <section class="firma-section">
+      <div class="firma-content">
+        <h2 class="section-title">
+          Más que contabilidad, <strong>inteligencia de negocios.</strong>
+        </h2>
+        <p>
+          En un entorno fiscal dinámico y exigente, su empresa requiere más que
+          el cumplimiento de obligaciones. En ConTaxes, blindamos su operación
+          mediante procesos de auditoría continua, cumplimiento tributario
+          estricto y análisis financiero de alto nivel. Elevamos el estándar de
+          su información para la toma de decisiones gerenciales.
+        </p>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="services-section" id="servicios">
+      <div style="text-align: center; margin-bottom: 2rem">
+        <h2 class="section-title">Áreas de <strong>Práctica</strong></h2>
+      </div>
+
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 3H21V21H3V3Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3 9H21M9 21V9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Outsourcing Contable (NIIF)</h3>
+          <p>
+            Registro y control del ciclo contable, elaboración de estados
+            financieros, políticas contables y reporting bajo NIIF para Pymes y
+            Plenas.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 3H21V21H3V3Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3 9H21M9 21V9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>BPO Administrativo & Nómina</h3>
+          <p>
+            Gestión operativa de nómina, obligaciones laborales, cuentas por
+            pagar, archivo digital, conciliaciones y cierre administrativo
+            mensual.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2L2 7L12 12L22 7L12 2Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 12L12 17L22 12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Consultoría Tributaria Estratégica</h3>
+          <p>
+            Planeación fiscal, optimización tributaria, análisis de impacto
+            normativo y estructuración impositiva para empresas y profesionales.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2L2 7L12 12L22 7L12 2Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 12L12 17L22 12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Cumplimiento & Gestión DIAN</h3>
+          <p>
+            Declaraciones, correcciones, radicación de requerimientos,
+            acompañamiento en procesos persuasivos y preventivos, revisiones y
+            litigios.
+          </p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M22 12H18L15 21L9 3L6 12H2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Auditoría Interna & Control</h3>
+          <p>
+            Evaluación del sistema de control interno, pruebas sustantivas,
+            identificación de brechas y recomendaciones para fortalecer
+            procesos.
+          </p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M22 12H18L15 21L9 3L6 12H2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h3>Diagnóstico Financiero & Riesgos</h3>
+          <p>
+            Análisis de riesgos operativos, revisión de inconsistencias
+            contables, evaluación financiera y aseguramiento de integridad en la
+            información.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="why-us-section">
+      <div style="text-align: center; margin-bottom: 2rem">
+        <h2 class="section-title">
+          <strong>Excelencia Técnica</strong> y Compromiso
+        </h2>
+      </div>
+      <div class="why-us-grid">
+        <div class="why-us-item">
+          <svg class="why-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 16V12M12 8H12.01"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h4>Mitigación de Riesgos</h4>
+          <p>Enfoque preventivo ante fiscalización de la DIAN y UGPP.</p>
+        </div>
+
+        <div class="why-us-item">
+          <svg class="why-icon" viewBox="0 0 24 24" fill="none">
+            <rect
+              x="2"
+              y="3"
+              width="20"
+              height="14"
+              rx="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M8 21H16M12 17V21"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h4>Tecnología Aplicada</h4>
+          <p>
+            Integración de ecosistemas digitales y facturación electrónica sin
+            fricciones.
+          </p>
+        </div>
+
+        <div class="why-us-item">
+          <svg class="why-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle
+              cx="9"
+              cy="7"
+              r="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h4>Seniority</h4>
+          <p>
+            Acompañamiento directo de consultores senior, sin intermediación
+            junior excesiva.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog / Insights -->
+    <section class="blog-section" id="insights">
+      <div style="text-align: center; margin-bottom: 2rem">
+        <h2 class="section-title">
+          Perspectivas y <strong>Actualidad Normativa</strong>
+        </h2>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="blog-image">📊</div>
+          <div class="blog-content">
+            <h4>Reforma Tributaria: Impacto en el sector servicios</h4>
+            <p class="blog-meta">Análisis estratégico • Noviembre 2025</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-image">📅</div>
+          <div class="blog-content">
+            <h4>Vencimientos Exógena 2025: Guía Clave</h4>
+            <p class="blog-meta">Compliance • Noviembre 2025</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <div class="blog-image">💡</div>
+          <div class="blog-content">
+            <h4>NIIF para Pymes: Lo que debe saber</h4>
+            <p class="blog-meta">Actualización contable • Noviembre 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <h2>
+        La tranquilidad de su empresa comienza<br />con una decisión
+        estratégica.
+      </h2>
+      <a href="https://calendly.com/contaxesinfo/reunion-de-consultoria-30-min"
+        ><button class="btn-primary">Hable con un experto</button></a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+      <div class="footer-content">
+        <div>
+          <div class="footer-logo">
+            <img
+              src="assets/logo.png"
+              width="200px"
+              alt="Contaxes - Servicios Contables, Tributarios y Financieros"
+            />
+          </div>
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 0.9rem;
+              line-height: 1.7;
+            "
+          >
+            Firma de servicios profesionales especializada en Assurance,
+            Impuestos y Consultoría Financiera para empresas en crecimiento.
+          </p>
+        </div>
+        <div>
+          <h4>Servicios</h4>
+          <a href="#">Outsourcing Contable</a>
+          <a href="#">Consultoría Tributaria</a>
+          <a href="#">Advisory Financiero</a>
+          <a href="#">Auditoría</a>
+        </div>
+        <div>
+          <h4>Políticas</h4>
+          <a href="#">Política de Datos</a>
+          <a href="#">Derechos Contable</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="#">📱 Hable con un Socio</a>
+          <a href="#">✉️ contaxesinfo@gmail.com</a>
+          <a href="#">📍 Cajicá, Colombia</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 ConTaxes. Todos los derechos reservados.
+      </div>
+    </footer>
+  </body>
+</html>
